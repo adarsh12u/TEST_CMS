@@ -2,8 +2,9 @@ import React from 'react'
 
 
 
-import Dashboard from './CMS/Dashboard'
 import PointForm from './Points'
+import Blog from './Blog'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 
 
@@ -12,19 +13,14 @@ const App = () => {
    const router =  createBrowserRouter([
       {
          path:"/",
-         element:<Home/>,   
-         children:[
-           {
-              path:"/cms",
-              element:<Dashboard/>
-           },
-           {
+         element:<Blog/>,   
+      },  {
             path:"/points",
             element:<PointForm/>
          }
           
-         ] 
-      }])
+       
+      ])
   return (
      <RouterProvider router={router}/>
   )

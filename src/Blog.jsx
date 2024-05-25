@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 const Blog = () => {
   const [title, setTitle] = useState('');
@@ -14,7 +13,6 @@ const Blog = () => {
   const [newPointImageUrl, setNewPointImageUrl] = useState('');
   const [newPointImages, setNewPointImages] = useState([]);
   const [pointImages, setPointImages] = useState([]);
-const{user} = useSelector((state)=>state.user)
   const handleAddPoint = () => {
     if (newPointName && newPointContent && newPointImage) {
       setNewPointImages([...newPointImages, newPointImage]);

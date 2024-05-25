@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 function PointForm() {
-  const {user} = useSelector((state)=>state.user)
   const [points, setPoints] = useState({});
 const[v,setv]=  useState();
   const addPoint = (customKey) => {
@@ -41,8 +39,8 @@ const[v,setv]=  useState();
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-let i=0;
-     for(var key in points){
+
+    
         
      
 
@@ -50,47 +48,47 @@ let i=0;
     
  formData.append('title',"adarsh")
  formData.append('para',"para")
- const fileObject = points[key].image ;
- var newObject  = {
-  'lastModified'     : fileObject.lastModified,
-  'lastModifiedDate' : fileObject.lastModifiedDate,
-  'name'             : fileObject.name,
-  'size'             : fileObject.size,
-  'type'             : fileObject.type
-};  
+//  const fileObject = points[key].image ;
+//  var newObject  = {
+//   'lastModified'     : fileObject.lastModified,
+//   'lastModifiedDate' : fileObject.lastModifiedDate,
+//   'name'             : fileObject.name,
+//   'size'             : fileObject.size,
+//   'type'             : fileObject.type
+// };  
 
-// then use JSON.stringify on new object
-JSON.stringify(newObject);
-console.log(newObject)
-const val =  Object.keys(points);
-// JSON.parse(newObject)
+// // then use JSON.stringify on new object
+// JSON.stringify(newObject);
+// console.log(newObject)
+// const val =  Object.keys(points);
+// // JSON.parse(newObject)
 
-console.log(val)
-var vals = val[i]
-i++;
-var news = {
-  [vals]:{
+// console.log(val)
+// var vals = val[i]
+// i++;
+// var news = {
+//   [vals]:{
 
-    text:points[key].text,
-    image:newObject
-  }
-}
+//     text:points[key].text,
+//     image:newObject
+//   }
+// }
 
-console.log(news)
-console.log(JSON.stringify(news))
-  formData.append('points',JSON.stringify(news))
+// console.log(news)
+// console.log(JSON.stringify(news))
+  formData.append('points',JSON.stringify(points))
 console.log(formData)
-const c = JSON.stringify(news)
-console.log(`${i}-----`,c)
-setv( c)
+// const c = JSON.stringify(news)
+// console.log(`${i}-----`,c)
+// setv( c)
 
-console.log(v)
-}  try {
+// console.log(v)
+  try {
    
       const response = await fetch('http://localhost:3000/blogs', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${user.token}`,
+          'Authorization': `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NTA5NGFmM2Y5ZDNiNjk2YjY3Njc0NiIsIm5hbWUiOiJBREFSU0ggR1VSSkFSIiwiZW1haWwiOiJhZGFyc2hAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkQ1ludThUQklmcXFETzdOcDEwNHk5dXNMaktvbWdYbWNRZHlaOWhDTDd1cGY3ZksvQURhdjYiLCJhdXRob3JpemF0aW9uIjp0cnVlLCJfX3YiOjB9LCJpYXQiOjE3MTY2MzQxOTJ9.qdoSLqotYRB1MG2LyoQE0FUCwfIAkCAGDLvBqLc2NeU'}`,
         },
         body: formData,
       });
